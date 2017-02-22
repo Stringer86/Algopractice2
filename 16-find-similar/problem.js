@@ -8,28 +8,25 @@
 // npm test 16-find-similar/test.js
 
 const findSimilar = function(arr1, arr2) {
-  let output = arr1.filter((e) => {
-    return arr2.indexOf(e) !== -1;
-  });
+  const arr1Obj  = arr1.reduce((acc, ele) => {
+    acc[JSON.stringify(ele)] = 1;
+    return acc;
+  },{});
 
-  // let arr1Arrs = arr1.filter((e) => {
-  //   return Array.isArray(e);
-  // })
-  //
-  // let arr2Arrs = arr2.filter((e) => {
-  //   return Array.isArray(e);
-  // })
-  //
-  // let arr1Objs = arr1.filter((e) => {
-  //  if (!Array.isArray(e) && (typeof e === 'object')) return e;
-  // })
-  //
-  // let arr2Objs = arr2.filter((e) => {
-  //  if (!Array.isArray(e) && (typeof e === 'object')) return e;
-  // })
+  const arr2Obj  = arr2.reduce((acc, ele) => {
+    acc[JSON.stringify(ele)] = 1;
+    return acc;
+  },{});
 
+  const result = []
+  for(const e in arr2Obj){
+    if(arr1Obj.hasOwnProperty(e)){
+      result.push(JSON.parse(e));
+    }
+  }
 
-  return output;
+  return result;
+
 }
 
 module.exports = {
