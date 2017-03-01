@@ -14,7 +14,7 @@ const percentageUnder = function(){
   let total = data.length;
   let below = 0;
 
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     if (data[i].balance < 0) below++;
   }
 
